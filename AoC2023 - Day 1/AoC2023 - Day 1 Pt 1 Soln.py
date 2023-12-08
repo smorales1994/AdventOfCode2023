@@ -1,25 +1,55 @@
-import string
+import re
 
-totalVal, count, val1, val2,  val3 = 0, 0, 0, 0, 0
+totalVal = 0
 with open("AoCProblem1.txt", "r") as openFile:
   while True:
-    char = openFile.read(1)
+    calibrationVal = (re.findall(r'(?=([1-9]))',openFile.readline()))
 
-    if char in '\n':
-      val3 = val1 + int(val1/10) if val2 == 0 else val1+ val2
-      totalVal+=val3
-      val2, count = 0,0
-
-    if not char:
+    if not calibrationVal:
       break
+  
+    match calibrationVal[0]:
+      case '1':
+        calibrationVal[0] = 1
+      case '2':
+        calibrationVal[0] = 2
+      case '3':
+        calibrationVal[0] = 3
+      case '4':
+        calibrationVal[0] = 4
+      case '5':
+        calibrationVal[0] = 5
+      case '6':
+        calibrationVal[0] = 6
+      case '7':
+        calibrationVal[0] = 7
+      case '8':
+        calibrationVal[0] = 8
+      case '9':
+        calibrationVal[0] = 9
 
-    if char in string.digits:
-      if count == 0:
-        val1 = int(char) * 10
-        count+=1
+    match calibrationVal[len(calibrationVal)-1]:
+      case '1':
+        calibrationVal[len(calibrationVal)-1] = 1
+      case '2':
+        calibrationVal[len(calibrationVal)-1] = 2
+      case '3':
+        calibrationVal[len(calibrationVal)-1] = 3
+      case '4':
+        calibrationVal[len(calibrationVal)-1] = 4
+      case '5':
+        calibrationVal[len(calibrationVal)-1] = 5
+      case '6':
+        calibrationVal[len(calibrationVal)-1] = 6
+      case '7':
+        calibrationVal[len(calibrationVal)-1] = 7
+      case '8':
+        calibrationVal[len(calibrationVal)-1] = 8
+      case '9':
+        calibrationVal[len(calibrationVal)-1] = 9
 
-      else:
-        val2 = int(char)
+    totalVal += (calibrationVal[0] * 10) + calibrationVal[len(calibrationVal)-1]
 
-print(totalVal)  
+print(totalVal)
+
 
