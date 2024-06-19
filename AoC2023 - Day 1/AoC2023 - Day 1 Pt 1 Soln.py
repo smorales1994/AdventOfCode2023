@@ -1,6 +1,10 @@
+#This program is a solution for the Day 1 Part 1 problem in Advent of Code 2023 where we add up the calibration values from the given .txt file and submit the answer on the website.
 import re
 
+#Initialize total calibration value to 0
 totalVal = 0
+
+#Loop that reads the lines of the .txt file to find any digits 1-9 on each line; calibration value will be a double digit, so we need the current and previous values to then store in the total calibration value.
 with open("AoCProblem1.txt", "r") as openFile:
   while True:
     calibrationVal = (re.findall(r'(?=([1-9]))',openFile.readline()))
